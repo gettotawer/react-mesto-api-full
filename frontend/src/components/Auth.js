@@ -11,12 +11,10 @@ function _checkResponse(res){
 
 export const register = ( password, email) => {
   return fetch(`${BASE_URL}/signup`, {
+    credentials: 'include',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin':  'https://api.gettotawer-mesto.nomoredomains.icu',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     },
     body: JSON.stringify({password: password, email: email})
   })
@@ -26,6 +24,7 @@ export const register = ( password, email) => {
 
 export const authorize = (email, password, ) => {
   return fetch(`${BASE_URL}/signin`, {
+    credentials: 'include',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -46,6 +45,7 @@ export const authorize = (email, password, ) => {
 
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
+    credentials: 'include',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
