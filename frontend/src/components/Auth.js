@@ -1,4 +1,4 @@
-export const BASE_URL = 'api.gettotawer-mesto.nomoredomains.icu';
+export const BASE_URL = 'https://api.gettotawer-mesto.nomoredomains.icu';
 // import Cookies from 'js-cookie';
 
 function _checkResponse(res){
@@ -13,7 +13,10 @@ export const register = ( password, email) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':  'https://api.gettotawer-mesto.nomoredomains.icu',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     },
     body: JSON.stringify({password: password, email: email})
   })
@@ -45,7 +48,7 @@ export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
       // 'Authorization': `Bearer ${token}`,
     }
   })

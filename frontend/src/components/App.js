@@ -61,7 +61,7 @@ function App() {
       const onLogin = (email, password) => {
         return Auth.authorize(email, password).then((res) => {
             setLoggedIn(true);
-            localStorage.setItem('jwt', res.token);
+            // localStorage.setItem('jwt', res.token);
         }).catch(()=>{
           setTooltipContent({
             picture: "url(../images/failed.svg)",
@@ -73,7 +73,7 @@ function App() {
       };
     
       const onSignOut = () => {
-        localStorage.removeItem('jwt');
+        // localStorage.removeItem('jwt');
         setLoggedIn(false);
         history.push('/sign-in');
       };

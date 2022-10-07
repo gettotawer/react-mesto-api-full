@@ -14,6 +14,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const regUrl = /^https?:\/\/[-a-zA-Z0-9]{2,256}\.([a-zA-Z/]{2,256})*/;
 
+const allowedCors = [
+  'https://gettotawer-mesto.nomoredomains.icu',
+  'http://gettotawer-mesto.nomoredomains.icu',
+  'localhost:3000',
+];
+
 const { PORT = 3000 } = process.env;
 
 const app = express();
@@ -24,6 +30,19 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
+
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
+
+  if (allowedCors.includes(origin)) {
+    // Проверяем, что значение origin есть среди разрешённых доменов
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Credentials', 'true');
+  }
+
+  next();
+});
 
 app.use('/cards', isAuthorizedMiddleware, routerCards);
 

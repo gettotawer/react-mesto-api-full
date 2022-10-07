@@ -71,7 +71,7 @@ export class Api{
 }
 
 const api = new Api({
-    baseUrl: 'api.gettotawer-mesto.nomoredomains.icu',
+    baseUrl: 'https://api.gettotawer-mesto.nomoredomains.icu',
     headers: {
         'Content-Type': 'application/json'
     }
