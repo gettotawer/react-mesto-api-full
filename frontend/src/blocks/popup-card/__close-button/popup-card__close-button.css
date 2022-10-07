@@ -1,0 +1,35 @@
+.popup-card__close-button{
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background-image: url(../../../images/Close_Icon.svg);
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 100%;
+    max-width: 32px;
+    max-height: 32px;
+    height: 100%;
+    cursor: pointer;
+    transition: background-image 0.2s;
+}
+
+.popup-card__close-button:hover{
+    background-image: url(../../../images/close_icon_hover.svg);
+}
+    
+@media (max-width: 534px) {
+ .popup-card__close-button{
+    background-image: url(../../../images/Close_Icon_s_size.svg);
+    max-width: 20px;
+    max-height: 20px;
+    top: -36px;
+    right: 0px;
+    }
+
+    .popup-card__close-button:hover{
+        background-image: url(../../../images/close_icon_s_hover.svg);
+    }
+} 
+    

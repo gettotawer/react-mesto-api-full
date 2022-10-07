@@ -1,0 +1,26 @@
+.auth__input{
+    font-family: 'Inter', sans-serif;
+    background-color: black;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    color: white;
+    border-bottom: 2px solid #CCCCCC;
+    padding-bottom: 13px;
+    margin-bottom: 30px;
+    max-width: 358px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.auth__input::placeholder {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CCCCCC;
+    
+  }

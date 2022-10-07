@@ -1,0 +1,9 @@
+.element__section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    padding-left: 21px;
+    max-width: 246px;
+    padding-bottom: 14px;
+}

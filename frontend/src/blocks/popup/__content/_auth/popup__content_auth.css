@@ -1,0 +1,8 @@
+.popup__content_auth{
+    display: flex;
+    padding: 0;
+    flex-direction: column;
+    /* justify-content: center; */
+    padding-top: 60px;
+    align-items: center;
+}

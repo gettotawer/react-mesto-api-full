@@ -1,0 +1,25 @@
+.header__logo{
+    max-width: 142px;
+    /* margin-bottom: 3.2vw; */
+    margin-bottom: 41px;
+}
+
+@media (max-width: 893px) {
+    .header__logo{
+     padding-left: 27px; 
+    }
+ }
+
+@media (max-width: 412px) {
+    .header__logo{
+        margin-bottom: 31.6px;
+    }
+ }
+
+ @media (max-width: 320px) {
+    .header__logo{
+        max-width: 103.74px;
+        max-height: 24.4px;
+        margin-bottom: 31.6px;
+    }
+ }
