@@ -17,7 +17,8 @@ const regUrl = /^https?:\/\/[-a-zA-Z0-9]{2,256}\.([a-zA-Z/]{2,256})*/;
 const allowedCors = [
   'https://gettotawer-mesto.nomoredomains.icu',
   'http://gettotawer-mesto.nomoredomains.icu',
-  'localhost:3000',
+  'http://localhost:3000',
+  'https://localhost:3000',
 ];
 
 const { PORT = 3000 } = process.env;
@@ -34,9 +35,9 @@ app.use(requestLogger);
 app.use((req, res, next) => {
   const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
   console.log(origin);
+  // Проверяем, что значение origin есть среди разрешённых доменов
   if (allowedCors.includes(origin)) {
     console.log('qqqq');
-    // Проверяем, что значение origin есть среди разрешённых доменов
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
