@@ -38,9 +38,9 @@ app.use((req, res, next) => {
   // Проверяем, что значение origin есть среди разрешённых доменов
   if (allowedCors.includes(origin)) {
     console.log('qqqq');
-    res.setHeader('Access-Control-Allow-Origin', origin);
-    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Credentials', 'true');
   }
 
   next();
