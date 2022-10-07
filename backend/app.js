@@ -41,9 +41,10 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', origin);
     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
     res.header('Access-Control-Allow-Credentials', 'true');
+    return res.end();
   }
 
-  next();
+  return next();
 });
 
 app.use('/cards', isAuthorizedMiddleware, routerCards);
