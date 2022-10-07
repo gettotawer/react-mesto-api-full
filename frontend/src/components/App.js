@@ -7,6 +7,7 @@ import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import MainPage from "./MainPage";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
+import Cookies from 'js-cookie';
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
       };
     
       React.useEffect(() => {
-        const jwt = localStorage.getItem('jwt');
+        const jwt = Cookies.get('jwt');
         if (jwt) {
           auth(jwt);
         }

@@ -71,9 +71,8 @@ export class Api{
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
+    baseUrl: 'api.gettotawer-mesto.nomoredomains.icu',
     headers: {
-        authorization: 'caa86cf1-6fb2-4a80-af1c-177822ac6f9b',
         'Content-Type': 'application/json'
     }
 });

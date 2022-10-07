@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'api.gettotawer-mesto.nomoredomains.icu';
+// import Cookies from 'js-cookie';
 
 function _checkResponse(res){
   if(res.ok){
@@ -29,14 +30,14 @@ export const authorize = (email, password, ) => {
     body: JSON.stringify({password: password, email: email})
   })
   .then(_checkResponse)
-  .then((data) => {
-    if (data.token){
-      localStorage.setItem('jwt', data.token);
-      return data;
-    } else {
-      return;
-    }
-  })
+  // .then((data) => {
+  //   if (data._id){
+  //     localStorage.setItem('jwt', Cookies.get('jwt'));
+  //     return data;
+  //   } else {
+  //     return;
+  //   }
+  // })
 };
 
 
@@ -45,7 +46,7 @@ export const getContent = (token) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
+      // 'Authorization': `Bearer ${token}`,
     }
   })
   .then(_checkResponse)
