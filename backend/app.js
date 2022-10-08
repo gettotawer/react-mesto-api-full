@@ -53,16 +53,6 @@ app.use(requestLogger);
 
 app.use(cors());
 
-app.use('/cards', isAuthorizedMiddleware, routerCards);
-
-app.use('/users', isAuthorizedMiddleware, routerUsers);
-
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
-
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -79,6 +69,16 @@ app.post('/signup', celebrate({
     password: Joi.string().required(),
   }),
 }), createUser);
+
+app.use('/cards', isAuthorizedMiddleware, routerCards);
+
+app.use('/users', isAuthorizedMiddleware, routerUsers);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.get('/signout', (req, res) => {
   res.clearCookie('jwt').send({ message: 'Выход' });
