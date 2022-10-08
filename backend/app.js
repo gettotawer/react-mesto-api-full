@@ -55,7 +55,7 @@ app.use(requestLogger);
 //   return next();
 // });
 
-app.use(cors());
+// app.use(cors());
 
 app.post('/signin', celebrate({
   body: Joi.object().keys({
