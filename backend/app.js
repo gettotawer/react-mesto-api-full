@@ -28,6 +28,7 @@ const app = express();
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
+// Тут должна быть строчка
 app.use(cors());
 
 app.use(bodyParser.json());
