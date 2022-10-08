@@ -30,6 +30,7 @@ function App() {
     
       React.useEffect(() => {
         const jwt = Cookies.get('jwt');
+        console.log(Cookies.get('jwt'));
         if (jwt) {
           auth(jwt);
         }
