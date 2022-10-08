@@ -15,12 +15,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const regUrl = /^https?:\/\/[-a-zA-Z0-9]{2,256}\.([a-zA-Z/]{2,256})*/;
 
-const allowedCors = [
-  'https://gettotawer-mesto.nomoredomains.icu',
-  'http://gettotawer-mesto.nomoredomains.icu',
-  'http://localhost:3000',
-  'https://localhost:3000',
-];
+// const allowedCors = [
+//   'https://gettotawer-mesto.nomoredomains.icu',
+//   'http://gettotawer-mesto.nomoredomains.icu',
+//   'http://localhost:3000',
+//   'https://localhost:3000',
+// ];
 
 const { PORT = 3000 } = process.env;
 
@@ -42,12 +42,16 @@ app.use(requestLogger);
 //     res.header('Access-Control-Allow-Origin', origin);
 //     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
 //     res.header('Access-Control-Allow-Credentials', 'true');
-//     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+//     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers,
+//  Origin, Accept, X-Requested-With, Content-Type,
+// Access-Control-Request-Method, Access-Control-Request-Headers');
 //     return res.status(200);
 //   }
 
 //   return next();
 // });
+
+app.use(cors());
 
 app.use('/cards', isAuthorizedMiddleware, routerCards);
 
