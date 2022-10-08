@@ -1,5 +1,4 @@
 export const BASE_URL = 'https://api.gettotawer-mesto.nomoredomains.icu';
-// import Cookies from 'js-cookie';
 
 function _checkResponse(res){
   if(res.ok){
