@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
@@ -32,21 +33,21 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-app.use((req, res, next) => {
-  const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
-  console.log(origin);
-  // Проверяем, что значение origin есть среди разрешённых доменов
-  if (allowedCors.includes(origin)) {
-    console.log('qqqq');
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-    return res.status(200);
-  }
+// app.use((req, res, next) => {
+//   const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
+//   console.log(origin);
+//   // Проверяем, что значение origin есть среди разрешённых доменов
+//   if (allowedCors.includes(origin)) {
+//     console.log('qqqq');
+//     res.header('Access-Control-Allow-Origin', origin);
+//     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+//     res.header('Access-Control-Allow-Credentials', 'true');
+//     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+//     return res.status(200);
+//   }
 
-  return next();
-});
+//   return next();
+// });
 
 app.use('/cards', isAuthorizedMiddleware, routerCards);
 
