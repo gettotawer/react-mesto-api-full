@@ -5,7 +5,9 @@ const ValidationError = require('../errors/validationError');
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id }).then((cardData) => {
-    res.send(cardData);
+    Card.findById(cardData._id).populate('owner').then((newCardData) => {
+      res.send(newCardData);
+    });
   }).catch((error) => {
     if (error.name === 'ValidationError') {
       return next(new ValidationError('Переданы некорректные данные при создании карточки.'));
@@ -15,9 +17,11 @@ const createCard = (req, res, next) => {
 };
 
 const getAllCards = (req, res, next) => {
-  Card.find({}).populate('owner').then((cards) => {
-    res.send(cards);
-  }).catch(next);
+  Card.find({}).populate(['owner', 'likes'])
+    .then((cards) => {
+      res.send(cards);
+    })
+    .catch(next);
 };
 
 const deleteCardById = (req, res, next) => {
@@ -44,7 +48,7 @@ const deleteCardById = (req, res, next) => {
 const likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.id, { $addToSet: { likes: req.user._id } }, {
     new: true, // обработчик then получит на вход обновлённую запись
-  }).populate('likes')
+  }).populate(['owner', 'likes'])
     // eslint-disable-next-line consistent-return
     .then((card) => {
       if (!card) {
@@ -62,7 +66,7 @@ const likeCard = (req, res, next) => {
 const dislikeCard = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.id, { $pull: { likes: req.user._id } }, {
     new: true, // обработчик then получит на вход обновлённую запись
-  }).populate('likes')
+  }).populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         return next(new NotFoundError('Карточка с указанным _id не найдена.'));

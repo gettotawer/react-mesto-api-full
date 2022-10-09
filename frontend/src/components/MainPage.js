@@ -14,6 +14,7 @@ function MainPage(props) {
 
     React.useEffect(()=>{
         api.getUserInfo().then((data) =>{
+            console.log(data);
             setCurrentUser(data);
         }).catch((err) => {
             console.log(err)
@@ -74,7 +75,8 @@ function MainPage(props) {
 
     function handleAddCard(obj){
         api.addCard(obj.name, obj.link).then((data)=>{
-            setCards([data,...cards]);
+            console.log(data);
+            setCards([...cards, data]);
             closeAllPopups();
         }).catch((err) => {
             console.log(err)
@@ -82,7 +84,8 @@ function MainPage(props) {
     }
 
     function handleCardLike(card){
-        const isLiked = card.likes.some(i => i._id === currentUser._id)
+        console.log(card)
+        const isLiked = card.likes.some(i => i === currentUser._id)
 
         api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
             setCards((state) => state.map((c) => c._id === card._id ? newCard : c));

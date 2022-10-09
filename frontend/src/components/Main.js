@@ -22,7 +22,7 @@ function Main(props){
                 <button type="button" className="profile__add-button" onClick={props.onAddPlace}></button>
             </section>
         <section className="elements">
-            {props.cards.map((card) => (
+            {props.cards.slice(0).reverse().map((card) => (
                 <Card key ={card._id} card={card} onCardClick = {props.onCardClick} userId = {userData._id} onCardLike = {props.onCardLike} onCardDelete={props.onCardDelete}/>
             ))}
         </section>

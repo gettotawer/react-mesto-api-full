@@ -4,6 +4,7 @@ import Login from "./Login";
 import React from 'react';
 import * as Auth from './Auth.js';
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { logOut } from "./Auth"
 import MainPage from "./MainPage";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
@@ -18,22 +19,18 @@ function App() {
     const [isOkinfo, setIsOkInfo] = React.useState(false);
     const history = useHistory();
 
-    function auth(jwt) {
-        return Auth.getContent(jwt)
+    function auth() {
+        return Auth.getContent()
           .then((res) => {
             if (res) {
               setLoggedIn(true);
-              setUserData(res.data.email);
+              setUserData(res.email);
             }
           }).catch(console.log("Что-то пошло не так, возможно, нужно немного подождать."))
       };
     
       React.useEffect(() => {
-        const jwt = Cookies.get;
-        console.log(Cookies.get('jwt'));
-        if (jwt) {
-          auth(jwt);
-        }
+          auth();
       }, [loggedIn]);
 
       React.useEffect(()=>{
@@ -74,7 +71,7 @@ function App() {
       };
     
       const onSignOut = () => {
-        // localStorage.removeItem('jwt');
+        logOut().then(res => console.log(res));
         setLoggedIn(false);
         history.push('/sign-in');
       };

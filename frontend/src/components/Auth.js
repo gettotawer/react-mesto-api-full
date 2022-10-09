@@ -41,6 +41,17 @@ export const authorize = (email, password, ) => {
   // })
 };
 
+export const logOut = () => {
+  console.log('выходим')
+  return fetch(`${BASE_URL}/signout`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((res)=>console.log(res))
+  .then(_checkResponse)
+}
 
 export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
