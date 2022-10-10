@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
+require('dotenv').config();
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
 const { login, createUser } = require('./controllers/users');
@@ -43,26 +44,6 @@ app.use(cookieParser());
 
 app.use(requestLogger);
 
-// app.use((req, res, next) => {
-//   const { origin } = req.headers; // Записываем в переменную origin соответствующий заголовок
-//   console.log(origin);
-//   // Проверяем, что значение origin есть среди разрешённых доменов
-//   if (allowedCors.includes(origin)) {
-//     console.log('qqqq');
-//     res.header('Access-Control-Allow-Origin', origin);
-//     res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-//     res.header('Access-Control-Allow-Credentials', 'true');
-//     res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers,
-//  Origin, Accept, X-Requested-With, Content-Type,
-// Access-Control-Request-Method, Access-Control-Request-Headers');
-//     return res.status(200);
-//   }
-
-//   return next();
-// });
-
-// app.use(cors());
-
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
@@ -91,7 +72,11 @@ app.get('/crash-test', () => {
 });
 
 app.get('/signout', (req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
+  res.clearCookie('jwt', {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+  }).send({ message: 'Выход' });
 });
 
 app.all('*', isAuthorizedMiddleware, (req, res, next) => {

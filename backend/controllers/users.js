@@ -8,6 +8,8 @@ const ValidationError = require('../errors/validationError');
 const AuthError = require('../errors/authError');
 const RegisterError = require('../errors/registerError');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
@@ -43,7 +45,11 @@ const login = (req, res, next) => {
           if (!isAuth) {
             return next(new AuthError('Пользователь не найден или неверный пароль'));
           }
-          const token = jwt.sign({ _id: user._id }, SECRET, { expiresIn: '7d' });
+          const token = jwt.sign(
+            { _id: user._id },
+            NODE_ENV === 'production' ? JWT_SECRET : SECRET,
+            { expiresIn: '7d' },
+          );
           return res
             .cookie('jwt', token, {
               maxAge: 3600000 * 24 * 7,

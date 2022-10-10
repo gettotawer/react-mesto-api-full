@@ -4,7 +4,7 @@ import Login from "./Login";
 import React from 'react';
 import * as Auth from './Auth.js';
 import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-import { logOut } from "./Auth"
+// import { logOut } from "./Auth"
 import MainPage from "./MainPage";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
@@ -71,9 +71,11 @@ function App() {
       };
     
       const onSignOut = () => {
-        logOut().then(res => console.log(res));
-        setLoggedIn(false);
-        history.push('/sign-in');
+        return Auth.logOut().then((res) => {
+          console.log(res);
+          setLoggedIn(false);
+          history.push('/sign-in');
+        });
       };
 
       function onCloseTooltip(){

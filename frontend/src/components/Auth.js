@@ -2,6 +2,7 @@ export const BASE_URL = 'https://api.gettotawer-mesto.nomoredomains.icu';
 
 function _checkResponse(res){
   if(res.ok){
+    // console.log(res.json())
       return res.json()
   }
   return Promise.reject(`Ошибка: ${res.status}`);
@@ -49,11 +50,10 @@ export const logOut = () => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then((res)=>console.log(res))
-  .then(_checkResponse)
+  }).then(_checkResponse)
 }
 
-export const getContent = (token) => {
+export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     credentials: 'include',
     method: 'GET',
