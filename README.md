@@ -3,6 +3,7 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-ip: 51.250.109.206
+GH: https://github.com/gettotawer/react-mesto-api-full
+ip: 84.252.138.97
 fontend: https://gettotawer-mesto.nomoredomains.icu/
 backend: https://api.gettotawer-mesto.nomoredomains.icu/
