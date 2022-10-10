@@ -8,7 +8,6 @@ import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import MainPage from "./MainPage";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
-import Cookies from 'js-cookie';
 
 function App() {
 

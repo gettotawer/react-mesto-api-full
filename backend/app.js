@@ -16,12 +16,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const regUrl = /^https?:\/\/[-a-zA-Z0-9]{2,256}\.([a-zA-Z/]{2,256})*/;
 
-// const allowedCors = [
-//   'https://gettotawer-mesto.nomoredomains.icu',
-//   'http://gettotawer-mesto.nomoredomains.icu',
-//   'http://localhost:3000',
-//   'https://localhost:3000',
-// ];
+const allowedCors = [
+  'https://gettotawer-mesto.nomoredomains.icu',
+  'http://gettotawer-mesto.nomoredomains.icu',
+  'http://localhost:3000',
+  'https://localhost:3000',
+];
 
 const { PORT = 3000 } = process.env;
 
@@ -32,9 +32,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb');
 // Тут должна быть строчка.
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: allowedCors,
   optionsSuccessStatus: 200,
-  credentials: true, // hh
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
