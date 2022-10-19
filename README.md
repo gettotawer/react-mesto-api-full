@@ -9,5 +9,7 @@
 
 Бэкенд расположен в директории `backend/`, а фронтенд - в `frontend/`. 
 
+Стек: React.js, Jsx, CSS3, Node.js, Express.Js, Mongo DB, Mongoose.
+
 fontend: https://gettotawer-mesto.nomoredomains.icu/ - остановлен <br/>
 backend: https://api.gettotawer-mesto.nomoredomains.icu/ -остановлен
